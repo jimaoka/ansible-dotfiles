@@ -1,0 +1,16 @@
+[user]
+  email = {{ git_mail }}
+  name = Jun IMAOKA
+
+[alias]
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  s = status
+  b = branch
+
+[core]
+  editor = vim
+  excludesfile = ~/.gitignore
+
+[color]
+  ui = true

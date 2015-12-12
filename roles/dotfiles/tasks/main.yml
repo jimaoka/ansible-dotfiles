@@ -1,0 +1,39 @@
+---
+- name: 必要なアプリケーションのインストール
+  yum: name={{ item }} state=latest enablerepo=rpmforge
+  sudo: yes
+  with_items:
+    - tmux
+    - git
+
+- name: dotfilesのコピー
+  copy: src={{ item }} dest=~/
+  with_items:
+    - .tmux.conf
+    - .vimrc
+    - .zshrc
+    - .gitignore
+
+- name: dotdir作成
+  file: path={{ item }} state=directory
+  with_items:
+    - ~/.tmux
+    - ~/.vim
+    - ~/.zsh
+    - ~/.vim/colors
+    - ~/.vim/bundle
+
+- name: .gitconfigのコピー
+  template: src=.gitconfig dest=~/
+
+- name: auto-fuのダウンロード
+  get_url: url=https://raw.githubusercontent.com/hchbaw/auto-fu.zsh/master/auto-fu.zsh dest=~/.tmux/auto-fu.zsh
+
+- name: hybrid.vimのダウンロード
+  get_url: url=https://raw.githubusercontent.com/w0ng/vim-hybrid/master/colors/hybrid.vim dest=~/.vim/colors/hybrid.vim
+
+- name: neobundleをインストール
+  git: repo=https://github.com/Shougo/neobundle.vim.git dest=~/.vim/bundle/neobundle.vim
+
+- name: neoinstall
+  command: ~/.vim/bundle/neobundle.vim/bin/neoinstall

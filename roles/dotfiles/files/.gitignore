@@ -1,0 +1,8 @@
+# unnecessary system files
+*.swp
+.DS_Store
+
+# atom config
+config.cson
+.editorconfig
+.ftpconfig

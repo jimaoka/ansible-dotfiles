@@ -1,0 +1,6 @@
+---
+- name: rpmforgeを登録
+  yum: name=http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+
+- name: enabled=0にする
+  replace: dest=/etc/yum.repos.d/rpmforge.repo regexp="enabled *= *1" replace="enabled=0"
